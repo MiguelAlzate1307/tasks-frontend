@@ -1,4 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { TasksService } from '../../providers/tasks.service';
 import {
   FormBuilder,
@@ -17,6 +23,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AddTaskComponent {
   addTaskForm: FormGroup;
+  submitted = false;
 
   private readonly tasksSer = inject(TasksService);
 
@@ -24,6 +31,12 @@ export class AddTaskComponent {
     this.addTaskForm = this.form.group({
       title: ['', Validators.required],
     });
+  }
+
+  withValue() {
+    if (this.addTaskForm.get('title')?.valid) {
+      this.submitted = false;
+    }
   }
 
   hasErrors(controlName: string, errorType: string): boolean {
@@ -34,7 +47,11 @@ export class AddTaskComponent {
   }
 
   addTask() {
-    this.tasksSer.addTask(this.addTaskForm.get('title')?.value);
-    window.location.href = '';
+    if (this.addTaskForm.valid) {
+      this.tasksSer.addTask(this.addTaskForm.get('title')?.value);
+      window.location.href = '';
+    } else {
+      this.submitted = true;
+    }
   }
 }

@@ -13,14 +13,17 @@
         >Task title</label
       >
       <input
+        (ngModelChange)="withValue()"
         formControlName="title"
         type="text"
         name="title"
         id="title"
-        [ngClass]="{ 'border-red-600': hasErrors('title', 'required') }"
+        [ngClass]="{
+          'border-red-600': hasErrors('title', 'required') || submitted
+        }"
         class="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"
       />
-      <div *ngIf="hasErrors('title', 'required')">
+      <div *ngIf="hasErrors('title', 'required') || submitted">
         <p class="text-red-600">Title is required</p>
       </div>
     </div>
