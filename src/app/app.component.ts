@@ -20,7 +20,12 @@ export class AppComponent implements OnInit {
     this.authSer.$user.subscribe({
       next: (user: User | null) => {
         this.user = user;
+        console.log(this.user);
       },
     });
+  }
+
+  logout() {
+    this.authSer.logout();
   }
 }

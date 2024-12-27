@@ -1,4 +1,4 @@
-<div class="flex justify-center my-12">
+<div class="h-screen flex items-center justify-center">
   <div
     class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
   >
@@ -27,11 +27,13 @@
           placeholder="name@company.com"
         />
         @if(validatorSer.hasErrors(loginForm, 'email', 'required')){
-        <div class="text-red-600">Email is required</div>
+        <div class="text-red-600 text-sm">Email is required</div>
         } @if(validatorSer.hasErrors(loginForm, 'email', 'email')){
-        <div class="text-red-600">Invalid email</div>
+        <div class="text-red-600 text-sm">Invalid email</div>
         } @if(validatorSer.hasErrors(loginForm, 'email', 'maxlength')){
-        <div class="text-red-600">Email must have less than 50 characters</div>
+        <div class="text-red-600 text-sm">
+          Email must have less than 50 characters
+        </div>
         }
       </div>
       <div>
@@ -55,9 +57,11 @@
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
         />
         @if(validatorSer.hasErrors(loginForm, 'password', 'required')){
-        <div class="text-red-600">Password is required</div>
+        <div class="text-red-600 text-sm">Password is required</div>
         } @if(validatorSer.hasErrors(loginForm, 'password', 'minlength')){
-        <div class="text-red-600">Password must have at least 6 characters</div>
+        <div class="text-red-600 text-sm">
+          Password must have at least 6 characters
+        </div>
         }
       </div>
       <button

@@ -25,7 +25,7 @@ export class AuthService {
       next: (data: any) => {
         localStorage.setItem('token', data.token);
         this.userSubject.next(data.user);
-        this.router.navigate(['/']);
+        this.router.navigate(['/tasks']);
       },
       error: ({ error }) => {
         message = error.message;
