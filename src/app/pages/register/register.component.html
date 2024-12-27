@@ -138,3 +138,7 @@
     </form>
   </div>
 </div>
+
+@if(authSer.message) {
+<app-alert [message]="authSer.message"></app-alert>
+}

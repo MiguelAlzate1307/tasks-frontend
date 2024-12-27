@@ -14,13 +14,13 @@ export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
 
+  message: string | undefined = undefined;
+
   isLogged() {
     return !!localStorage.getItem('token');
   }
 
   authenticate(formValue: any, type: 'login' | 'register') {
-    let message = undefined;
-
     this.http.post(`${environment.apiUrl}/auth/${type}`, formValue).subscribe({
       next: (data: any) => {
         localStorage.setItem('token', data.token);
@@ -28,12 +28,13 @@ export class AuthService {
         this.router.navigate(['/tasks']);
       },
       error: ({ error }) => {
-        message = error.message;
+        this.message = error.message;
         this.userSubject.next(null);
+        setTimeout(() => {
+          this.message = undefined;
+        }, 3000);
       },
     });
-
-    return message ?? true;
   }
 
   get $user() {
