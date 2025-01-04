@@ -1,0 +1,31 @@
+<div
+  [ngClass]="{ 'border-red-500': !task?.done, 'border-green-500': task?.done }"
+  class="max-w-full p-6 border bg-white rounded-lg shadow dark:bg-gray-800 text-center"
+>
+  <h5
+    class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+  >
+    {{ task?.title }}
+  </h5>
+  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+    {{ task?.description }}
+  </p>
+  <!-- Modal toggle -->
+  <button
+    [attr.data-modal-target]="'crud-modal-' + task?.id"
+    [attr.data-modal-toggle]="'crud-modal-' + task?.id"
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    type="button"
+  >
+    Edit Task
+  </button>
+  <button
+    type="button"
+    (click)="deleteTask()"
+    class="focus:outline-none ml-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+  >
+    Delete Task
+  </button>
+</div>
+
+<app-edit-task-modal [task]="task"></app-edit-task-modal>

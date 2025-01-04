@@ -1,0 +1,19 @@
+@if (tasksList.length > 0){
+<div class="container mx-auto px-4 py-6">
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    @for (task of tasksList; track $index) {
+    <app-task-card [task]="task"></app-task-card>
+    }
+  </div>
+</div>
+} @else {
+<div
+  class="h-screen flex items-center justify-center rounded-lg bg-gray-50 dark:bg-gray-800"
+>
+  <div
+    class="px-3 py-1 text-xs font-medium leading-none text-center text-blue-800 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200"
+  >
+    There are no tasks to show
+  </div>
+</div>
+}
