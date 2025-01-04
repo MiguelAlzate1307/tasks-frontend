@@ -16,7 +16,7 @@ export class TasksService {
   getTasks() {
     const token = localStorage.getItem('token');
     return this.http
-      .get(`${environment.apiUrl}/tasks`, {
+      .get(`${environment.apiUrl}/tasks?limit=9`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -53,6 +53,24 @@ export class TasksService {
     const token = localStorage.getItem('token');
     return this.http
       .delete(`${environment.apiUrl}/tasks/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .subscribe({
+        next: () => {
+          this.getTasks();
+        },
+        error: ({ error }) => {
+          console.log(error.message);
+        },
+      });
+  }
+
+  addTask(formValue: any) {
+    const token = localStorage.getItem('token');
+    return this.http
+      .post(`${environment.apiUrl}/tasks`, formValue, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -24,6 +24,8 @@ export class TasksListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.tasksSer.tasks$.subscribe({
       next: (data: any) => {
+        console.log(data);
+
         this.tasksList = data;
       },
       error: ({ error }) => {

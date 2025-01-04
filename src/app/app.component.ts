@@ -3,10 +3,11 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { AuthService } from './providers/auth.service';
 import { User } from './models/user.interface';
+import { AddTaskModalComponent } from './components/add-task-modal/add-task-modal.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, AddTaskModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
